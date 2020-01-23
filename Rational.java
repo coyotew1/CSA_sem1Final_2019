@@ -69,12 +69,14 @@ public class Rational
         setDenominator(a);
     }
 
-    public Rational add(Rational rational)
-    {
-        
-
-        Rational result = new Rational(rational.getNumerator()+this.numerator, rational.getDenominator()+this.denominator);
-        return reduce(result.getNumerator(), result.getDenominator());
+    public Rational add(Rational rat) {
+        Rational result = new Rational();
+        int a = rat.getNumerator();
+        int b = rat.getDenominator();
+        result.setDenominator(denominator * rat.denominator);
+        result.setNumerator(numerator * rat.denominator  + denominator * rat.numerator);
+        result.reduce(result.getNumerator(), result.getDenominator());
+        return result;
     }
     
     
