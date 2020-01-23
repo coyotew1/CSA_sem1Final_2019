@@ -60,9 +60,72 @@ public class Rational
         setNumerator(a);
     }
 
+    public void invert()
+    {
+        int a= getNumerator();
+        int b= getDenominator();
+
+        setNumerator(b);
+        setDenominator(a);
+    }
+
+    public Rational add(Rational rational)
+    {
+        
+
+        Rational result = new Rational(rational.getNumerator()+this.numerator, rational.getDenominator()+this.denominator);
+        return reduce(result.getNumerator(), result.getDenominator());
+    }
+    
+    
+    
+
+    //pures
+    public static double toDouble(int numerator, int denominator)
+    {
+        return (double)numerator/denominator;
+        
+    }
+    public static Rational reduce (int numerator, int denominator) 
+    {
+        int lcd;
+        int gcd = 0;
+        if (numerator < 0) 
+        {
+            numerator = -numerator;
+        }
+        if (numerator > denominator) 
+        {
+            lcd = numerator;
+        }
+        else 
+        {
+            lcd = denominator;
+        }
+    
+        for (int i = lcd; i >= 2; i--) 
+        {
+            if (numerator % i == 0 && denominator % i == 0) 
+            {
+                gcd = i;
+                break;
+            }
+        }
+    
+        if (gcd != 0) 
+        {
+            numerator /= gcd;
+            denominator /= gcd;
+        }
+        Rational reduced = new Rational(numerator, denominator);
+        return reduced;
+    }
+
+    //overides default toString method
     @Override
     public String toString()
     {
         return Integer.toString(getNumerator()) + "/" + Integer.toString(getDenominator());
     }
 }
+
