@@ -40,4 +40,29 @@ public class Rational
     {
         return this.denominator;
     }
+
+    //instance methods
+
+    public void printRational()
+    {
+        /**
+         * I tried to get them to print out vertically (the so called natural format) but it
+         * didn't end up working.
+         */
+        System.out.println(toString());
+    }
+
+    public void negate()
+    {
+        int a = getNumerator();
+        int b = -1;
+        a = a*b;
+        setNumerator(a);
+    }
+
+    @Override
+    public String toString()
+    {
+        return Integer.toString(getNumerator()) + "/" + Integer.toString(getDenominator());
+    }
 }
